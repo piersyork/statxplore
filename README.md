@@ -22,7 +22,8 @@ devtools::install_github("piersyork/statxplore")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is an example of how to get data on the number of PIP Registrations
+per month by age
 
 ``` r
 library(statxplore)
@@ -34,3 +35,11 @@ pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations"
   add_fields(c("Month", "Age (bands and single year)")) |>
   fetch()
 ```
+
+## TO-DO
+
+-   [ ] Add caching of data
+-   [ ] Add secure storing of APIKey
+-   [ ] Add reading APIKey from file
+-   [ ] Change method of renaming column names to named vector
+-   [ ] Fix ordering of column names
