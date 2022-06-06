@@ -2,13 +2,22 @@
 % Please edit documentation in R/search.R
 \name{available_databases}
 \alias{available_databases}
-\title{Title}
+\title{View the available databases}
 \usage{
 available_databases(API_KEY)
 }
 \arguments{
-\item{API_KEY}{}
+\item{API_KEY}{Your statXplore account API key}
+}
+\value{
+A dataframe of databases
 }
 \description{
-Title
+View the available databases
+}
+\examples{
+\dontrun{
+available_databases("YOUR_API_KEY")
+}
+
 }

@@ -2,13 +2,25 @@
 % Please edit documentation in R/search.R
 \name{available_datasets}
 \alias{available_datasets}
-\title{Title}
+\title{Show the available datasets for a given database}
 \usage{
 available_datasets(database, API_KEY)
 }
 \arguments{
-\item{API_KEY}{}
+\item{database}{The name of a database returned by available_databases()}
+
+\item{API_KEY}{Your statXplore account API key}
+}
+\value{
+A dataframe of datasets
 }
 \description{
-Title
+Show the available datasets for a given database
+}
+\examples{
+
+\dontrun{
+available_datasets("Personal Independence Payment", "YOUR_API_KEY")
+}
+
 }

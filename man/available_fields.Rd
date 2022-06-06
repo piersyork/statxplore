@@ -2,13 +2,26 @@
 % Please edit documentation in R/search.R
 \name{available_fields}
 \alias{available_fields}
-\title{Title}
+\title{Show the available fields for a given dataset}
 \usage{
 available_fields(database, dataset, API_KEY)
 }
 \arguments{
-\item{API_KEY}{}
+\item{database}{The name of a database returned by available_databases()}
+
+\item{dataset}{The name of a dataset returned by available_datasets()}
+
+\item{API_KEY}{Your statXplore account API key}
+}
+\value{
+A dataframe of fields
 }
 \description{
-Title
+Show the available fields for a given dataset
+}
+\examples{
+\dontrun{
+available_fields("Personal Independence Payment", "YOUR_API_KEY")
+}
+
 }

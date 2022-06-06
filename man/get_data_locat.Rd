@@ -2,13 +2,18 @@
 % Please edit documentation in R/utils.R
 \name{get_data_locat}
 \alias{get_data_locat}
-\title{Title}
+\title{Internal function to get the query name of the measure/field}
 \usage{
 get_data_locat(schema, field)
 }
 \arguments{
-\item{field}{}
+\item{schema}{The dataset scheme}
+
+\item{field}{The field of interest}
+}
+\value{
+A query name of the field
 }
 \description{
-Title
+Internal function to get the query name of the measure/field
 }

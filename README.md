@@ -26,5 +26,11 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(statxplore)
-## basic example code
+
+# API_KEY <- "YOUR_API_KEY"
+
+pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+  add_measure("PIP Registrations") |>
+  add_fields(c("Month", "Age (bands and single year)")) |>
+  fetch()
 ```

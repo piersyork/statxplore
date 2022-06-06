@@ -2,13 +2,20 @@
 % Please edit documentation in R/utils.R
 \name{fetch_data}
 \alias{fetch_data}
-\title{Title}
+\title{Internal function to send the post request for the dataset}
 \usage{
 fetch_data(query, names, API_KEY)
 }
 \arguments{
-\item{API_KEY}{}
+\item{query}{The query object}
+
+\item{names}{new column names}
+
+\item{API_KEY}{Your account API key}
+}
+\value{
+the parsed json of the data
 }
 \description{
-Title
+Internal function to send the post request for the dataset
 }

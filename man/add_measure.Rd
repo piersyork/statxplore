@@ -13,6 +13,18 @@ add_measure(query, measure, rename = NULL)
 
 \item{rename}{Optional. What should the measure variable returned in the data.frame be called}
 }
+\value{
+A query object
+}
 \description{
 Add the measurement variable to the query
+}
+\examples{
+\dontrun{
+pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+  add_measure("PIP Registrations") |>
+  add_fields(c("Month", "Age (bands and single year)")) |>
+  fetch()
+ }
+
 }

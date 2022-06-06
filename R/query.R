@@ -4,10 +4,17 @@
 #' @param dataset The name of the dataset
 #' @param API_KEY Your statxplore account API key
 #'
-#' @return
+#' @return A query object
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+#'   add_measure("PIP Registrations") |>
+#'   add_fields(c("Month", "Age (bands and single year)")) |>
+#'   fetch()
+#'  }
+#'
 start_query <- function(database, dataset, API_KEY) {
   db_url <- available_databases(API_KEY)[name == database, location]
 
@@ -30,10 +37,17 @@ start_query <- function(database, dataset, API_KEY) {
 #' @param measure The name of the measure
 #' @param rename Optional. What should the measure variable returned in the data.frame be called
 #'
-#' @return
+#' @return A query object
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+#'   add_measure("PIP Registrations") |>
+#'   add_fields(c("Month", "Age (bands and single year)")) |>
+#'   fetch()
+#'  }
+#'
 add_measure <- function(query, measure, rename = NULL) {
   measure_locat <- available_fields(query$database$name, query$dataset$name, query$API_KEY)[name == measure, location]
   query$measure$to_send <- paste0('"', measure_locat, '"')
@@ -52,10 +66,17 @@ add_measure <- function(query, measure, rename = NULL) {
 #' @param fields The names of the fields
 #' @param rename Optional. What should the field variables returned in the data.frame be called
 #'
-#' @return
+#' @return A query object
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+#'   add_measure("PIP Registrations") |>
+#'   add_fields(c("Month", "Age (bands and single year)")) |>
+#'   fetch()
+#'  }
+#'
 add_fields <- function(query, fields, rename = NULL) {
   field_locats <- available_fields(query$database$name, query$dataset$name, query$API_KEY)[name %in% fields, location]
 
@@ -73,12 +94,20 @@ add_fields <- function(query, fields, rename = NULL) {
 #' Return the dataset from the query
 #'
 #' @param query An object created using start_query
+#' @param send Should the query be send. Default TRUE. If False the json query is returned.
 #'
-#' @return
+#' @return A dataframe of the requested dataset and fields
 #' @export
 #'
 #' @examples
-fetch <- function(query) {
+#' \dontrun{
+#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+#'   add_measure("PIP Registrations") |>
+#'   add_fields(c("Month", "Age (bands and single year)")) |>
+#'   fetch()
+#'  }
+#'
+fetch <- function(query, send = TRUE) {
   db_location <- query$database$url
   ds_name <- gsub("https://stat-xplore.dwp.gov.uk/webapi/rest/v1/schema/", "", query$dataset$url)
   measures <- query$measure$to_send

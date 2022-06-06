@@ -2,13 +2,18 @@
 % Please edit documentation in R/utils.R
 \name{get_schema}
 \alias{get_schema}
-\title{Title}
+\title{Internal function to get the schema at an endpoint}
 \usage{
 get_schema(url, API_KEY)
 }
 \arguments{
-\item{API_KEY}{}
+\item{url}{The endpoint url}
+
+\item{API_KEY}{Your account API key}
+}
+\value{
+a dataframe of the schema
 }
 \description{
-Title
+Internal function to get the schema at an endpoint
 }

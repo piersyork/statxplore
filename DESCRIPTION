@@ -7,7 +7,7 @@ Maintainer: Piers York <piersyork@gmail.com>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: MIT + file LICENSE
-Imports: httr, tidyr, dplyr, glue, janitor
+Imports: httr, tidyr, dplyr, glue, janitor, data.table
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.0

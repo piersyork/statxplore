@@ -4,11 +4,25 @@
 \alias{fetch}
 \title{Return the dataset from the query}
 \usage{
-fetch(query)
+fetch(query, send = TRUE)
 }
 \arguments{
 \item{query}{An object created using start_query}
+
+\item{send}{Should the query be send. Default TRUE. If False the json query is returned.}
+}
+\value{
+A dataframe of the requested dataset and fields
 }
 \description{
 Return the dataset from the query
+}
+\examples{
+\dontrun{
+pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+  add_measure("PIP Registrations") |>
+  add_fields(c("Month", "Age (bands and single year)")) |>
+  fetch()
+ }
+
 }

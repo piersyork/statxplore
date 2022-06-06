@@ -13,6 +13,18 @@ add_fields(query, fields, rename = NULL)
 
 \item{rename}{Optional. What should the field variables returned in the data.frame be called}
 }
+\value{
+A query object
+}
 \description{
 Add the query fields
+}
+\examples{
+\dontrun{
+pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+  add_measure("PIP Registrations") |>
+  add_fields(c("Month", "Age (bands and single year)")) |>
+  fetch()
+ }
+
 }

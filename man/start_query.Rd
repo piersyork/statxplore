@@ -13,6 +13,18 @@ start_query(database, dataset, API_KEY)
 
 \item{API_KEY}{Your statxplore account API key}
 }
+\value{
+A query object
+}
 \description{
 Start a statxplore query
+}
+\examples{
+\dontrun{
+pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+  add_measure("PIP Registrations") |>
+  add_fields(c("Month", "Age (bands and single year)")) |>
+  fetch()
+ }
+
 }
