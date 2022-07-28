@@ -58,9 +58,10 @@ pip_regs_age <- start_query(database = "Personal Independence Payment", dataset 
 ```
 
 ## TO-DO
-- [ ] Add caching of data
 - [x] Add secure storing of APIKey 
+- [ ] Add ability to fetch data by geography
 - [ ] Add reading APIKey from file
 - [ ] Change method of renaming column names to named vector
 - [ ] Fix ordering of column names
+- [ ] Add caching of data
 
