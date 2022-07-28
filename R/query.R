@@ -2,29 +2,28 @@
 #'
 #' @param database The name of the database
 #' @param dataset The name of the dataset
-#' @param API_KEY Your statxplore account API key
 #'
 #' @return A query object
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations") |>
 #'   add_measure("PIP Registrations") |>
 #'   add_fields(c("Month", "Age (bands and single year)")) |>
 #'   fetch()
 #'  }
 #'
-start_query <- function(database, dataset, API_KEY) {
-  db_url <- available_databases(API_KEY)[name == database, location]
+start_query <- function(database, dataset) {
 
-  ds_url <- available_datasets(database, API_KEY)[name == dataset, location]
+  db_url <- available_databases()[name == database, location]
+
+  ds_url <- available_datasets(database)[name == dataset, location]
 
   out <- list(database = list(name = database, url = db_url),
               dataset = list(name = dataset, url = ds_url),
               measure = NULL,
-              fields = NULL,
-              API_KEY = API_KEY)
+              fields = NULL)
 
   class(out) <- "statx_query"
 
@@ -42,14 +41,14 @@ start_query <- function(database, dataset, API_KEY) {
 #'
 #' @examples
 #' \dontrun{
-#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations") |>
 #'   add_measure("PIP Registrations") |>
 #'   add_fields(c("Month", "Age (bands and single year)")) |>
 #'   fetch()
 #'  }
 #'
 add_measure <- function(query, measure, rename = NULL) {
-  measure_locat <- available_fields(query$database$name, query$dataset$name, query$API_KEY)[name == measure, location]
+  measure_locat <- available_fields(query$database$name, query$dataset$name)[name == measure, location]
   query$measure$to_send <- paste0('"', measure_locat, '"')
 
   if (is.null(rename)) {
@@ -71,14 +70,14 @@ add_measure <- function(query, measure, rename = NULL) {
 #'
 #' @examples
 #' \dontrun{
-#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations") |>
 #'   add_measure("PIP Registrations") |>
 #'   add_fields(c("Month", "Age (bands and single year)")) |>
 #'   fetch()
 #'  }
 #'
 add_fields <- function(query, fields, rename = NULL) {
-  field_locats <- available_fields(query$database$name, query$dataset$name, query$API_KEY)[name %in% fields, location]
+  field_locats <- available_fields(query$database$name, query$dataset$name)[name %in% fields, location]
 
   query$fields$to_send <- paste0("[ ", '"', field_locats, '"', " ]", collapse = ", ")
 
@@ -101,7 +100,7 @@ add_fields <- function(query, fields, rename = NULL) {
 #'
 #' @examples
 #' \dontrun{
-#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+#' pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations") |>
 #'   add_measure("PIP Registrations") |>
 #'   add_fields(c("Month", "Age (bands and single year)")) |>
 #'   fetch()
@@ -124,7 +123,7 @@ fetch <- function(query, send = TRUE) {
 
   if (send) {
     result <- paste0("{", to_send, "}") |>
-      fetch_data(names = c(query$fields$names, query$measure$name), API_KEY)
+      fetch_data(names = c(query$fields$names, query$measure$name))
 
     return(janitor::clean_names(result))
   } else {

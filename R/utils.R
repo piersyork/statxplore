@@ -5,14 +5,13 @@ globalVariables(c("name", "location", ".", "API_KEY"))
 #' Internal function to get the schema at an endpoint
 #'
 #' @param url The endpoint url
-#' @param API_KEY Your account API key
 #'
 #' @return a dataframe of the schema
 #' @noMd
 #'
 #'
-get_schema <- function(url, API_KEY) {
-  response <- httr::GET(url, httr::add_headers(APIKey = API_KEY))
+get_schema <- function(url) {
+  response <- httr::GET(url, httr::add_headers(APIKey = get_api_key()))
 
   children <- httr::content(response)$children
 
@@ -37,13 +36,13 @@ get_data_locat <- function(schema, field) {
 #'
 #' @param query The query object
 #' @param names new column names
-#' @param API_KEY Your account API key
 #'
 #' @return the parsed json of the data
 #' @noMd
 #'
-fetch_data <- function(query, names, API_KEY) {
-  response <- httr::POST(url = "https://stat-xplore.dwp.gov.uk/webapi/rest/v1/table", httr::add_headers(APIKey = API_KEY), body = query) |>
+fetch_data <- function(query, names) {
+  response <- httr::POST(url = "https://stat-xplore.dwp.gov.uk/webapi/rest/v1/table",
+                         httr::add_headers(APIKey = get_api_key()), body = query) |>
     httr::content()
 
   items <- lapply(response$fields, \(x) unlist(lapply(x$items, \(y) y$labels)))
