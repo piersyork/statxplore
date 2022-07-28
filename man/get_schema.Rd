@@ -4,12 +4,10 @@
 \alias{get_schema}
 \title{Internal function to get the schema at an endpoint}
 \usage{
-get_schema(url, API_KEY)
+get_schema(url)
 }
 \arguments{
 \item{url}{The endpoint url}
-
-\item{API_KEY}{Your account API key}
 }
 \value{
 a dataframe of the schema

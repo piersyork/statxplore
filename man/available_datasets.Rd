@@ -4,12 +4,10 @@
 \alias{available_datasets}
 \title{Show the available datasets for a given database}
 \usage{
-available_datasets(database, API_KEY)
+available_datasets(database)
 }
 \arguments{
 \item{database}{The name of a database returned by available_databases()}
-
-\item{API_KEY}{Your statXplore account API key}
 }
 \value{
 A dataframe of datasets

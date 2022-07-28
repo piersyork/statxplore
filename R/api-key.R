@@ -3,20 +3,19 @@ API_KEY <- "API_KEY"
 
 #' Set the API Key
 #'
-#' @param key
+#' @param key Your statXplore API Key, available from your statXplore account info
 #'
 #' @return No return, assigns the API to cache
 #'
 #' @export
 #'
 #' @examples
+#' set_api_key("YOUR_API_KEY")
 #'
 #'
 
 set_api_key <- function(key) {
-
   assign(API_KEY, key, envir = statx_cache)
-
 }
 
 #' Get the API Key
@@ -25,7 +24,7 @@ set_api_key <- function(key) {
 #' @export
 #'
 #' @examples
-#'
+#' api_key <- get_api_key()
 #'
 
 get_api_key <- function() {

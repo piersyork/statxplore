@@ -4,10 +4,7 @@
 \alias{available_databases}
 \title{View the available databases}
 \usage{
-available_databases(API_KEY)
-}
-\arguments{
-\item{API_KEY}{Your statXplore account API key}
+available_databases()
 }
 \value{
 A dataframe of databases

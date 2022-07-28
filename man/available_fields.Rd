@@ -4,14 +4,12 @@
 \alias{available_fields}
 \title{Show the available fields for a given dataset}
 \usage{
-available_fields(database, dataset, API_KEY)
+available_fields(database, dataset)
 }
 \arguments{
 \item{database}{The name of a database returned by available_databases()}
 
 \item{dataset}{The name of a dataset returned by available_datasets()}
-
-\item{API_KEY}{Your statXplore account API key}
 }
 \value{
 A dataframe of fields

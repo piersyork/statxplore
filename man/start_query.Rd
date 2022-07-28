@@ -4,14 +4,12 @@
 \alias{start_query}
 \title{Start a statxplore query}
 \usage{
-start_query(database, dataset, API_KEY)
+start_query(database, dataset)
 }
 \arguments{
 \item{database}{The name of the database}
 
 \item{dataset}{The name of the dataset}
-
-\item{API_KEY}{Your statxplore account API key}
 }
 \value{
 A query object
@@ -21,7 +19,7 @@ Start a statxplore query
 }
 \examples{
 \dontrun{
-pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations", API_KEY) |>
+pip_regs_age <- start_query("Personal Independence Payment", "PIP Registrations") |>
   add_measure("PIP Registrations") |>
   add_fields(c("Month", "Age (bands and single year)")) |>
   fetch()

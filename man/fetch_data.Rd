@@ -4,14 +4,12 @@
 \alias{fetch_data}
 \title{Internal function to send the post request for the dataset}
 \usage{
-fetch_data(query, names, API_KEY)
+fetch_data(query, names)
 }
 \arguments{
 \item{query}{The query object}
 
 \item{names}{new column names}
-
-\item{API_KEY}{Your account API key}
 }
 \value{
 the parsed json of the data
