@@ -4,7 +4,7 @@
 \alias{fetch_data}
 \title{Internal function to send the post request for the dataset}
 \usage{
-fetch_data(query, names)
+fetch_data(query, names = NULL)
 }
 \arguments{
 \item{query}{The query object}
@@ -15,5 +15,5 @@ fetch_data(query, names)
 the parsed json of the data
 }
 \description{
-Internal function to send the post request for the dataset
+Intended to be used internally but can be used to send a custom statXplore query
 }

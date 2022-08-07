@@ -7,7 +7,7 @@ globalVariables(c("name", "location", ".", "API_KEY"))
 #' @param url The endpoint url
 #'
 #' @return a dataframe of the schema
-#' @noMd
+#' @export
 #'
 #'
 get_schema <- function(url) {
@@ -34,13 +34,15 @@ get_data_locat <- function(schema, field) {
 
 #' Internal function to send the post request for the dataset
 #'
+#' @description Intended to be used internally but can be used to send a custom statXplore query
+#'
 #' @param query The query object
 #' @param names new column names
 #'
 #' @return the parsed json of the data
-#' @noMd
+#' @export
 #'
-fetch_data <- function(query, names) {
+fetch_data <- function(query, names = NULL) {
   response <- httr::POST(url = "https://stat-xplore.dwp.gov.uk/webapi/rest/v1/table",
                          httr::add_headers(APIKey = get_api_key()), body = query) |>
     httr::content()
@@ -52,7 +54,9 @@ fetch_data <- function(query, names) {
 
   df$values <- values
 
-  colnames(df) <- names
+  if (!is.null(names)) {
+    colnames(df) <- names
+  }
 
   return(df)
 }

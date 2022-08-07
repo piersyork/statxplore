@@ -12,3 +12,7 @@ The API key stored in cache
 \description{
 Get the API Key
 }
+\examples{
+api_key <- get_api_key()
+
+}
